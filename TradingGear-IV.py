@@ -116,7 +116,7 @@ def Welcome():
     print('Time start -', TimeStartProgram)
     P = input('What period using? ')
     T = int(input('How much time in minutes? '))
-    PartOfBalance = int(input('How much you wanna take for one order? '))
+    PartOfBalance = 10
     if P in Periods:
         P = Times[Periods.index(P)]
 
