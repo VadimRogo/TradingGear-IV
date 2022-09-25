@@ -72,8 +72,8 @@ def BuyProcess(quantity, Coin):
 
 def SellProcess(Coin):
     #Sell process just Sell by taking name of Coin and quantity that takes from CollectDataProcess
-    BalaceOfCoin = float(client.get_asset_balance(asset=Coin)['free'])
-    BalanceInUsd = price * quantity
+    BalanceOfCoin = float(client.get_asset_balance(asset=Coin)['free'])
+    BalanceInUsd = price * BalanceOfCoin
     if BalanceInUsd >= PartOfBalance:
         try:
             order = client.create_order(
@@ -93,7 +93,7 @@ def SellAllProcess(Coin):
     CollectData(Coin)
     BalanceOfCoin = float(client.get_asset_balance(asset=Coin)['free'])
     BalanceInUSD = BalanceOfCoin * price
-    while BalanceInUSD >= PartOfBalance:
+    while BalanceInUSD >= PartOfBalance + 2:
         BalanceOfCoin = float(client.get_asset_balance(asset=Coin)['free'])
         BalanceInUSD = BalanceOfCoin * price
         SellProcess(Coin)
@@ -116,7 +116,7 @@ def Welcome():
     print('Time start -', TimeStartProgram)
     P = input('What period using? ')
     T = int(input('How much time in minutes? '))
-    PartOfBalance = 10
+    PartOfBalance = int(input('How much you wanna take for one order? '))
     if P in Periods:
         P = Times[Periods.index(P)]
 
